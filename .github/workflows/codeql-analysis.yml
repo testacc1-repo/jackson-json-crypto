@@ -34,7 +34,7 @@ jobs:
       uses: github/codeql-action/init@v1
       with:
         languages: ${{ matrix.language }}
-        queries: '.github/codeql/custom-queries'
+        queries: './.github/codeql/custom-queries'
         # Custom queries path for advanced analysis.
 
     # Manual build step using Gradle
