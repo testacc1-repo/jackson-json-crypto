@@ -1,3 +1,11 @@
+/**
+ * @kind problem
+ * @title Detect cryptographic-related variables
+ * @description Identifies variables related to cryptography by checking variable names and assigned values.
+ */
+
+
+
 import java
 
 // Detect cryptographic-related variables
