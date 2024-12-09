@@ -1,7 +1,8 @@
 /**
  * @name CryptographicArtificatoryVariable
  * @description Variable Matched with Cryptographic Artificatory Keywords  
- * 
+ * @kind problem
+ * @problem.severity	recommendation
  * @id java/type-crypto-variable-match
  * @tags reliability
  *        correctness
