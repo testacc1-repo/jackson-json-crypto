@@ -11,15 +11,12 @@ on:
 jobs:
   analyze:
     name: Analyze
-    # Use a self-hosted runner or GitHub-hosted VM
     runs-on: ubuntu-latest
-    # For self-hosted VMs, change to `runs-on: self-hosted` or a specific label like `self-hosted, java`.
 
     strategy:
       fail-fast: false
       matrix:
         language: [ 'java' ]
-        build-mode: manual # Use manual mode for custom builds
 
     steps:
     - name: Checkout repository
@@ -35,11 +32,9 @@ jobs:
       with:
         languages: ${{ matrix.language }}
         queries: './.github/codeql/custom-queries'
-        # Custom queries path for advanced analysis.
 
     # Manual build step using Gradle
-    - if: matrix.build-mode == 'manual'
-      name: Build with Gradle
+    - name: Build with Gradle
       shell: bash
       run: |
         chmod +x ./gradlew
