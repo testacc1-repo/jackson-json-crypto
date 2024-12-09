@@ -1,13 +1,8 @@
 /**
- * @name Type mismatch on container modification
- * @description Calling container modification methods such as 'Collection.remove'
- *              or 'Map.remove' with an object of a type that is incompatible with
- *              the corresponding container element type is unlikely to have any effect.
+ * @name CryptographicArtificatoryMethod
+ * @description Method Matched with Cryptographic Artificatory Keywords  
  * 
- * @kind problem
- * @problem.severity error
- * @precision very-high
- * @id java/type-mismatch-modificationli
+ * @id java/type-crypto-method-match
  * @tags reliability
  *        correctness
  *        logic
