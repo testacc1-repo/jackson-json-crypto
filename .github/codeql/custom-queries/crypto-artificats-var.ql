@@ -1,7 +1,16 @@
 /**
+ * @name Type mismatch on container modification
+ * @description Calling container modification methods such as 'Collection.remove'
+ *              or 'Map.remove' with an object of a type that is incompatible with
+ *              the corresponding container element type is unlikely to have any effect.
+ * 
  * @kind problem
- * @title Detect cryptographic-related variables
- * @description Identifies variables related to cryptography by checking variable names and assigned values.
+ * @problem.severity error
+ * @precision very-high
+ * @id java/type-mismatch-modificationlk
+ * @tags reliability
+ *        correctness
+ *        logic
  */
 
 
