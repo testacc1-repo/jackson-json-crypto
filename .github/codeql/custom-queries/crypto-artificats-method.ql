@@ -2,7 +2,7 @@
  * @name CryptographicArtificatoryMethod
  * @description Method Matched with Cryptographic Artificatory Keywords  
  * @kind problem
-  .@problem.severity	recommendation
+ * @problem.severity	recommendation
  * @id java/type-crypto-method-match
  * @tags reliability
  *        correctness
