@@ -1,0 +1,48 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: '16 0 * * 4'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'java' ]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: 11
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ matrix.language }}
+        queries: './.github/codeql/custom-queries'
+
+    # Manual build step using Gradle
+    - name: Build with Gradle
+      shell: cmd
+      run: |
+        gradlew.bat clean build test
+        rem Customize commands as necessary for your build/test process.
+
+    # Perform CodeQL analysis
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      with:
+        category: "/language:${{ matrix.language }}"
+        upload: true
