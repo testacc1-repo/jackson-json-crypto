@@ -46,14 +46,6 @@ class CryptoVariable extends AnyNode {
        va.getTarget().getName().toLowerCase().matches("%length%") or
        va.getTarget().getName().toLowerCase().matches("%size%") or
        va.getTarget().getName().toLowerCase().matches("%kyber%"))) or
-    exists(MethodCallExpr call |
-      call.getMethodName().toLowerCase().matches("%encrypt%") or
-      call.getMethodName().toLowerCase().matches("%decrypt%") or
-      call.getMethodName().toLowerCase().matches("%generatekey%") or
-      call.getMethodName().toLowerCase().matches("%hash%") or
-      call.getMethodName().toLowerCase().matches("%sign%") or
-      call.getMethodName().toLowerCase().matches("%derivekey%") or
-      call.getMethodName().toLowerCase().matches("%pbkdf%")) or
     exists(NewClassExpr obj | 
       obj.getType().getName().toLowerCase().matches("%cipher%") or 
       obj.getType().getName().toLowerCase().matches("%keygenerator%") or 
