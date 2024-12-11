@@ -54,7 +54,7 @@ class CryptoVariable extends AnyNode {
       call.getMethodName().toLowerCase().matches("%sign%") or
       call.getMethodName().toLowerCase().matches("%derivekey%") or
       call.getMethodName().toLowerCase().matches("%pbkdf%")) or
-    exists(NewObjectExpr obj | 
+    exists(NewClassExpr obj | 
       obj.getType().getName().toLowerCase().matches("%cipher%") or 
       obj.getType().getName().toLowerCase().matches("%keygenerator%") or 
       obj.getType().getName().toLowerCase().matches("%secure%") or 
