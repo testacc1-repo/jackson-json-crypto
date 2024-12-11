@@ -18,18 +18,17 @@ import semmle.code.java.Variable
 class CryptoVariable extends Variable {
   CryptoVariable() {
     // Check if the variable name contains cryptographic-related keywords
-    this.getName().toLowerCase().matches("%key%") or 
+    this.getName().toLowerCase().matches("%key%size%") or 
     this.getName().toLowerCase().matches("%aes%") or 
     this.getName().toLowerCase().matches("%rsa%") or 
     this.getName().toLowerCase().matches("%tls%") or 
     this.getName().toLowerCase().matches("%hash%") or
-    this.getName().toLowerCase().matches("%length%") or
-    this.getName().toLowerCase().matches("%size%") or
+    this.getName().toLowerCase().matches("%key%length%") or
+    this.getName().toLowerCase().matches("%sha%") or
     this.getName().toLowerCase().matches("%kyber%")
     or
     exists(StringLiteral str | this.getAnAssignedValue() = str and
-    (str.getValue().toLowerCase().matches("%key%") or 
-     str.getValue().toLowerCase().matches("%aes%") or 
+    (str.getValue().toLowerCase().matches("%aes%") or 
      str.getValue().toLowerCase().matches("%rsa%") or 
      str.getValue().toLowerCase().matches("%tls%") or 
      str.getValue().toLowerCase().matches("%hash%") or
