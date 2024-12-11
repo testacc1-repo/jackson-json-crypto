@@ -11,9 +11,11 @@
 
 
 import java
+import semmle.code.java.Variable
+
 
 // Detect cryptographic-related variables
-class CryptoVariable extends LocalVariableDecl {
+class CryptoVariable extends Variable {
   CryptoVariable() {
     // Check if the variable name contains cryptographic-related keywords
     this.getName().toLowerCase().matches("%key%") or 
