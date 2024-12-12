@@ -55,16 +55,4 @@ jobs:
       with:
         category: "/language:${{ matrix.language }}"
         upload: true
-
-    - name: Ensure SARIF file exists
-      run: |
-        if (-Not (Test-Path -Path "./.github/workflows/codeql/codeql-results.sarif")) {
-        New-Item -ItemType File -Path "./.github/codeql/codeql-results.sarif" -Value "{}"
-        }
-
-        
-    - name: Upload results to SARIF file
-      uses: actions/upload-artifact@v3
-      with:
-        name: codeql-results
-        path: './.github/codeql/codeql-results.sarif'
+        output: './.github/codeql/codeql-results.sarif'
