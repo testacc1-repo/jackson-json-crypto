@@ -58,6 +58,6 @@ jobs:
     - name: Upload SARIF file as artifact
       uses: actions/upload-artifact@v3
       with:
-        name: codeql-results
+        name: CodeQLSARIF
         path: ${{ steps.analyze.outputs.sarif-output }}
 
