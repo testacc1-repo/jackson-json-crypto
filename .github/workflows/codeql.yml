@@ -62,3 +62,20 @@ jobs:
         name: CodeQLSARIF
         path: ${{ steps.analyze.outputs.sarif-output }}
 
+    - name: Download SARIF File
+      run: |
+        cp ${{ steps.analyze.outputs.sarif-output }} ./results.sarif
+
+    - name: Convert SARIF to CSV
+      uses: brianharris/sarif-to-csv-action@v1
+      with:
+        sarif_path: ./results.sarif
+        output_path: ./results.csv
+
+    - name: Upload SARIF and CSV files as artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: CodeQL-Results
+        path: |
+          ./results.sarif
+          ./results.csv
