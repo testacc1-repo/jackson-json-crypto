@@ -60,4 +60,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: codeql-results
-        path: .github/workflows/codeql-results/codeql.sarif
+        path: './.github/workflows/codeql-results/codeql.sarif'
