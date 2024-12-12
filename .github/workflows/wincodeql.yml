@@ -55,14 +55,7 @@ jobs:
       with:
         category: "/language:${{ matrix.language }}"
         upload: true
-    
-    - name: Save SARIF results
-      run: |
-        codeql database analyze ./codeql-database ./queries --format=sarifv2.1.0 --output=results.sarif
-
-    - name: Upload SARIF file as artifact
-      uses: actions/upload-artifact@v3
+    - uses: github/codeql-action/upload-sarif@v3
       with:
-        name: codeql-results
-        path: results.sarif
-        
+        # Path to SARIF file relative to the root of the repository
+       sarif_file: results.sarif        
