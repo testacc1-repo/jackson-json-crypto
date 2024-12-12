@@ -55,7 +55,20 @@ jobs:
       with:
         category: "/language:${{ matrix.language }}"
         upload: true
-    - uses: github/codeql-action/upload-sarif@v3
+    # Step: Ensure CodeQL CLI is available and save SARIF results locally
+    - name: Ensure CodeQL CLI is available
+      run: |
+        echo "Checking if codeql is installed"
+        codeql --version
+
+    - name: Save SARIF results
+      run: |
+        mkdir -p ./codeql-results
+        codeql database analyze ./codeql-database ./queries --format=sarifv2.1.0 --output=./codeql-results/results.sarif
+
+    # Step: Upload SARIF file as artifact
+    - name: Upload SARIF file as artifact
+      uses: actions/upload-artifact@v3
       with:
-        # Path to SARIF file relative to the root of the repository
-       sarif_file: results.sarif        
+        name: codeql-results
+        path: ./codeql-results/results.sarif
