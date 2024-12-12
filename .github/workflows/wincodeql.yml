@@ -55,4 +55,8 @@ jobs:
       with:
         category: "/language:${{ matrix.language }}"
         upload: true
-        output: './.github/codeql/codeql-results.sarif'
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: codeqlresults.sarif
+        
