@@ -58,15 +58,13 @@ jobs:
 
     - name: Ensure SARIF file exists
       run: |
-        if not exist ./.github/workflows/codeql-results (
-        mkdir .github\workflows\codeql-results
-        )
-        if not exist ./.github/workflows/codeql-results/codeql.sarif (
-        echo {} > ./.github/workflows/codeql-results/codeql.sarif
-        )
+        if (-Not (Test-Path -Path "./.github/workflows/codeql/codeql-results.sarif")) {
+        New-Item -ItemType File -Path "./.github/codeql/codeql-results.sarif" -Value "{}"
+        }
+
         
     - name: Upload results to SARIF file
       uses: actions/upload-artifact@v3
       with:
         name: codeql-results
-        path: './.github/workflows/codeql-results/codeql.sarif'
+        path: './.github/codeql/codeql-results.sarif'
