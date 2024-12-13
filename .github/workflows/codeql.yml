@@ -67,7 +67,7 @@ jobs:
     - name: Convert SARIF to CSV
       uses: mr-sherman/sarif-to-csv@v2.1
       with:
-        input-file: './results.sarif'
+        input-file: "${{ steps.analyze.outputs.sarif-output }}/${{ matrix.language }}.sarif"
         output-file: "/home/runner/work/${{ github.event.repository.name }}/results/${{ matrix.language }}.csv"
 
     - name: Upload SARIF and CSV files as artifacts
