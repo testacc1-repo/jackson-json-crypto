@@ -62,6 +62,8 @@ jobs:
       run: |
         echo ${{ steps.analyze.outputs.sarif-output }}
         cp ${{ steps.analyze.outputs.sarif-output }} ./results.sarif
+        echo "Displaying the first few lines of the CSV file:"
+        head -n 10 ./results.csv
     - name: Convert SARIF to CSV
       uses: mr-sherman/sarif-to-csv@v2.1
       with:
