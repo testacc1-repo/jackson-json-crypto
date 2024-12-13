@@ -57,20 +57,14 @@ jobs:
         category: "/language:${{ matrix.language }}"
         upload: true
 
-    - name: Download SARIF File
-      run: |
-        cp ${{ steps.analyze.outputs.sarif-output }} ./results.sarif
-
     - name: Convert SARIF to CSV
       uses: mr-sherman/sarif-to-csv@v2.1
       with:
-        input-file: ${{ steps.analyze.outputs.sarif-output }}
-        output-file: "./results.csv"
+        input-file: "/home/runner/work/${{ github.event.repository.name }}/results/${{ matrix.language }}.sarif"
+        output-file: "/home/runner/work/${{ github.event.repository.name }}/results/${{ matrix.language }}.csv"
 
     - name: Upload SARIF and CSV files as artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: CodeQL-Results
-        path: |
-          ./results.sarif
-          ./results.csv
+        name: "${{ matrix.language }}.csv"
+        path: "/home/runner/work/${{ github.event.repository.name }}/results/${{ matrix.language }}.csv"
