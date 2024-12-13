@@ -64,8 +64,8 @@ jobs:
     - name: Convert SARIF to CSV
       uses: mr-sherman/sarif-to-csv@v2.1
       with:
-        input-file:: ./results.sarif
-        output-file: ./results.csv
+        input-file: "./results.sarif"
+        output-file: "./results.csv"
 
     - name: Upload SARIF and CSV files as artifacts
       uses: actions/upload-artifact@v3
