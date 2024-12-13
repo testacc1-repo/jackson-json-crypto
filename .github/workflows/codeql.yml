@@ -67,7 +67,7 @@ jobs:
         cp ${{ steps.analyze.outputs.sarif-output }} ./results.sarif
 
     - name: Convert SARIF to CSV
-      uses: mr-sherman/sarif-to-csv-action@v2
+      uses: mr-sherman/sarif-to-csv-action@v2.4
       with:
         sarif_path: ./results.sarif
         output_path: ./results.csv
