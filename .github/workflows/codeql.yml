@@ -66,5 +66,5 @@ jobs:
     - name: Upload SARIF and CSV files as artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: "${{ matrix.language }}.csv"
+        name: "codeql-results"
         path: "${{ steps.analyze.outputs.sarif-output }}/${{ matrix.language }}.csv"
