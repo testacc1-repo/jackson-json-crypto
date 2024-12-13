@@ -61,10 +61,10 @@ jobs:
       uses: mr-sherman/sarif-to-csv@v2.1
       with:
         input-file: "${{ steps.analyze.outputs.sarif-output }}/${{ matrix.language }}.sarif"
-        output-file: "/home/runner/work/${{ github.event.repository.name }}/results/${{ matrix.language }}.csv"
+        output-file: "${{ steps.analyze.outputs.sarif-output }}/${{ matrix.language }}.csv"
 
     - name: Upload SARIF and CSV files as artifacts
       uses: actions/upload-artifact@v3
       with:
         name: "${{ matrix.language }}.csv"
-        path: "/home/runner/work/${{ github.event.repository.name }}/results/${{ matrix.language }}.csv"
+        path: "${{ steps.analyze.outputs.sarif-output }}/${{ matrix.language }}.csv"
