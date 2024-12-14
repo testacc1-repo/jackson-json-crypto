@@ -7,16 +7,16 @@ where
   (
     call.getMethod().getDeclaringType().hasQualifiedName("javax.crypto", "Cipher") and
     call.getMethod().getName() = "getInstance" and
-    call.getAStringArgument() = algorithm
+    call.getArgument(0).toString() = algorithm
   ) or
   (
     call.getMethod().getDeclaringType().hasQualifiedName("java.security", "MessageDigest") and
     call.getMethod().getName() = "getInstance" and
-    call.getAStringArgument() = algorithm
+    call.getArgument(0).toString() = algorithm
   ) or
   (
     call.getMethod().getDeclaringType().hasQualifiedName("java.security", "Signature") and
     call.getMethod().getName() = "getInstance" and
-    call.getAStringArgument() = algorithm
+    call.getArgument(0).toString() = algorithm
   )
 select call, algorithm, call.getLocation()
