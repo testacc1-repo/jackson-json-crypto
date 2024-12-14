@@ -1,5 +1,4 @@
 import java
-import semmle.code.java.security.Cryptography
 
 from MethodCall call, string algorithm
 where
