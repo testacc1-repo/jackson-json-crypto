@@ -15,10 +15,12 @@ import java
 
 class CipherGetInstanceUsage extends MethodCall {
     CipherGetInstanceUsage() {
-      this.getTarget().getDeclaringType().hasQualifiedName("javax.crypto%") or
-      this.getTarget().getDeclaringType().hasQualifiedName("java.security%") or
-      this.getTarget().getDeclaringType().hasQualifiedName("javax.net%") and
-      this.getTarget().getName() = "getInstance"
+      exists(Method m | this.getMethod() = m and (
+      m.getDeclaringType().hasQualifiedName("javax.crypto%") or
+      m.getDeclaringType().hasQualifiedName("java.security%") or
+      m.getDeclaringType().hasQualifiedName("javax.net%") and
+      m.getName() = "getInstance"
+      ))
     }
 }      
 
