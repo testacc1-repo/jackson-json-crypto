@@ -11,6 +11,7 @@
 
  import java
  import semmle.code.java.security.Encryption
+ import semmle.code.java.dataflow.DataFlow
  import semmle.code.java.security.BrokenCryptoAlgorithmQuery
  
  abstract class CryptoAlgorithm extends Expr {
@@ -23,18 +24,20 @@
   }
 
   class CryptoAlgoLiteral extends CryptoAlgorithm, ShortStringLiteral{
+    
     CryptoAlgoLiteral()
     {
-
+        exists(string s | s = this.getValue() | s.length()>1)
     }
+    override string getStringValue() { result = this.getValue() }
   }
 
  from
-   PathNode source, PathNode sink, CryptoAlgoSpec spec,
+   Dataflow::Node source, Dataflow::Node sink, CryptoAlgoSpec spec,
    CryptoAlgoLiteral algo
  where
    sink.getNode().asExpr() = spec.getAlgoSpec() and
    source.getNode().asExpr() = algo and
-  flowPath(source, sink)
+   DataFlow::localFlow(source, sink)
 select spec, source, sink, "Cryptographic algorithm $@ is  used.", algo,
 algo.getValue()
