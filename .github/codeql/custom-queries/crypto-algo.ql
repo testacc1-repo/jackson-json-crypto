@@ -25,4 +25,5 @@ class CipherGetInstanceUsage extends MethodCall {
 }      
 
 from CipherGetInstanceUsage mc 
-select mc, mc.getArgument(0), mc.getLocation()
+select mc, "Algorithm " + mc.getArgument(0).toString() +  mc.getLocation().getFile().getRelativePath().toString() +
+" Line: " + mc.getLocation().getStartLine().toString()
