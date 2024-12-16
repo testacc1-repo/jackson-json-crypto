@@ -13,6 +13,8 @@
  import semmle.code.java.security.Encryption
  import semmle.code.java.dataflow.DataFlow
  import semmle.code.java.security.BrokenCryptoAlgorithmQuery
+ import InsecureCryptoFlow::PathGraph
+
  
  abstract class CryptoAlgorithm extends Expr {
     /** Gets the string representation of this insecure cryptographic algorithm. */
@@ -33,10 +35,13 @@
   }
 
  from
-   DataFlow::Node source, DataFlow::Node sink, CryptoAlgoSpec spec,
-   CryptoAlgoLiteral algo
+    InsecureCryptoFlow::PathNode source, InsecureCryptoFlow::PathNode sink, CryptoAlgoSpec spec,
+    CryptoAlgoLiteral algo
  where
-   DataFlow::localFlow(DataFlow::exprNode(source), DataFlow::exprNode(spec.getAlgoSpec()))
+    sink.getNode().asExpr() = spec.getAlgoSpec() and
+    source.getNode().asExpr() = algo and
+    DataFlow::localFlow(source, sink)
 
-select spec, source, sink, "Cryptographic algorithm $@ is  used.", algo,
-algo.getStringValue()
+select
+    spec, source, sink, "Cryptographic algorithm $@ is  used.", algo,
+    algo.getStringValue()
