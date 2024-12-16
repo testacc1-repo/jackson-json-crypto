@@ -13,7 +13,7 @@
 
 import java
 
-class CipherGetInstanceUsage extends MethodCall {
+class CryptoMethodInstanceUsage extends MethodCall {
     CipherGetInstanceUsage() {
       exists(Method m | this.getMethod() = m and (
       m.getDeclaringType().getQualifiedName().matches("javax.crypto%") or
@@ -24,6 +24,18 @@ class CipherGetInstanceUsage extends MethodCall {
     }
 }      
 
-from CipherGetInstanceUsage mc 
-select mc, "Algorithm " + mc.getArgument(0).toString() +  mc.getLocation().getFile().getRelativePath().toString() +
-" Line: " + mc.getLocation().getStartLine().toString()
+
+string getArgInfo(CryptoMethodInstanceUsage c) { 
+    // Check if the argument is a string literal
+    if (exists(StringLiteral arg | arg = c.getArgument(0)))
+    then result = "Argument: " + c.getArgument(0).toString()
+    else if (exists(VariableAccess var | var = c.getArgument(0)))
+    then result = "Argument " + v.getInitializer().toString()
+    else result = "Argument: Complex or Unresolved Expression"
+    
+}
+
+
+from CryptomethodInstanceUsage mc 
+select mc, "Algorithm " + getArgInfo(mc) + " " +  mc.getLocation().getFile().getRelativePath().toString() +
+" Line: " +  mc.getLocation().getStartLine().toString()
