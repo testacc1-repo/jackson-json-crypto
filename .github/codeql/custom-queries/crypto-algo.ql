@@ -1,5 +1,5 @@
 /**
- * @name CryptographicArtificatoryUsage
+ * @name CryptographicUsage
  * @description Method Matched with Cryptographic Artificatory Usage  
  * @kind problem
  * @problem.severity	recommendation
