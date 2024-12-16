@@ -31,7 +31,7 @@ string getArgInfo(CryptoMethodInstanceUsage c) {
     if (exists(StringLiteral arg | arg = c.getArgument(0)))
     then result = "Argument: " + c.getArgument(0).toString()
     else if (exists(VarAccess var | var = c.getArgument(0)))
-    then result = "Argument " + c.getArgument(0).getValue().toString()
+    then result = "Argument " + c.getArgument(0).getAnAssignedValue().toString()
     else result = "Argument: Complex or Unresolved Expression"
     
 }
