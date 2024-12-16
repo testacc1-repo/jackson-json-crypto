@@ -21,7 +21,7 @@ class CryptoMethodInstanceUsage extends MethodCall {
       m.getDeclaringType().getQualifiedName().matches("java.security%") or
       m.getDeclaringType().getQualifiedName().matches("javax.net%") )and
       m.getName() = "getInstance")
-      ))
+      )
     }
 }      
 
@@ -31,7 +31,7 @@ string getArgInfo(CryptoMethodInstanceUsage c) {
     if (exists(StringLiteral arg | arg = c.getArgument(0)))
     then result = "Argument: " + c.getArgument(0).toString()
     else if (exists(VarAccess var | var = c.getArgument(0)))
-    then result = "Argument " + c.getArgument(0).getVariable().getAnAssignedValue().toString()
+    then result = "Argument " + c.getArgument(0).getValue().toString()
     else result = "Argument: Complex or Unresolved Expression"
     
 }
