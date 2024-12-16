@@ -12,6 +12,7 @@
 
 
 import java
+import semmle.code.java.dataflow.DataFlow
 
 class CryptoMethodInstanceUsage extends MethodCall {
     CryptoMethodInstanceUsage() {
@@ -29,8 +30,8 @@ string getArgInfo(CryptoMethodInstanceUsage c) {
     // Check if the argument is a string literal
     if (exists(StringLiteral arg | arg = c.getArgument(0)))
     then result = "Argument: " + c.getArgument(0).toString()
-    else if (exists(VariableAccess var | var = c.getArgument(0)))
-    then result = "Argument " + c.getArgument(0).getInitializer().toString()
+    else if (exists(VarAccess var | var = c.getArgument(0)))
+    then result = "Argument " + c.getArgument(0).getVariable().getAnAssignedValue().toString()
     else result = "Argument: Complex or Unresolved Expression"
     
 }
