@@ -33,7 +33,7 @@
   }
 
  from
-   Dataflow::Node source, Dataflow::Node sink, CryptoAlgoSpec spec,
+   DataFlow::Node source, DataFlow::Node sink, CryptoAlgoSpec spec,
    CryptoAlgoLiteral algo
  where
    DataFlow::localFlow(DataFlow::exprNode(source), DataFlow::exprNode(spec.getAlgoSpec()))
