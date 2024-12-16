@@ -1,5 +1,5 @@
 /**
- * @name CryptographicUsage
+ * @name CryptographicArtificatoryUsage
  * @description Method Matched with Cryptographic Artificatory Usage  
  * @kind problem
  * @problem.severity	recommendation
@@ -16,9 +16,9 @@ import java
 class CipherGetInstanceUsage extends MethodCall {
     CipherGetInstanceUsage() {
       exists(Method m | this.getMethod() = m and (
-      m.getDeclaringType().hasQualifiedName("javax.crypto%") or
-      m.getDeclaringType().hasQualifiedName("java.security%") or
-      m.getDeclaringType().hasQualifiedName("javax.net%") and
+      m.getDeclaringType().getQualifiedName().matches("javax.crypto%") or
+      m.getDeclaringType().getQualifiedName().matches("java.security%") or
+      m.getDeclaringType().getQualifiedName().matches("javax.net%") and
       m.getName() = "getInstance"
       ))
     }
