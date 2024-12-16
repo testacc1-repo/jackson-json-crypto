@@ -26,22 +26,8 @@
  }      
  
  
- string getArgInfo(CryptoMethodInstanceUsage c) { 
-     // Check if the argument is a string literal
-     VarAccess var = null
+ from CryptoMethodInstanceUsage mc, Parameter p
+ where  DataFlow::localFlow(DataFlow::parameterNode(p), DataFlow::exprNode(call.getArgument(0)))
 
-     if (exists(VarAccess var | var = c.getArgument(0))) {
-      varAccess = var
-    }
-     if (exists(StringLiteral arg | arg = c.getArgument(0)))
-     then result = "Argument: " + c.getArgument(0).toString()
-     else if (var != null)
-     then result = "Argument " + var.isVarRead().toString()
-     else result = "Argument: Complex or Unresolved Expression"
-     
- }
- 
- 
- from CryptoMethodInstanceUsage mc 
- select mc, "Algorithm " + getArgInfo(mc) + " " +  mc.getLocation().getFile().getRelativePath().toString() +
+ select mc, "Algorithm " + p + " " +  mc.getLocation().getFile().getRelativePath().toString() +
  " Line: " +  mc.getLocation().getStartLine().toString()
