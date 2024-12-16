@@ -1,21 +1,24 @@
+/**
+ * @name CryptographicArtificatoryUsage
+ * @description Method Matched with Cryptographic Artificatory Usage  
+ * @kind problem
+ * @problem.severity	recommendation
+ * @id java/type-crypto-method-match
+ * @tags reliability
+ *        correctness
+ *        logic
+ */
+
+
+
 import java
 
-from MethodCall call, string algorithm
-where
-  // Identify cryptographic algorithm usage
-  (
-    call.getMethod().getDeclaringType().hasQualifiedName("javax.crypto", "Cipher") and
-    call.getMethod().getName() = "getInstance" and
-    call.getArgument(0).toString() = algorithm
-  ) or
-  (
-    call.getMethod().getDeclaringType().hasQualifiedName("java.security", "MessageDigest") and
-    call.getMethod().getName() = "getInstance" and
-    call.getArgument(0).toString() = algorithm
-  ) or
-  (
-    call.getMethod().getDeclaringType().hasQualifiedName("java.security", "Signature") and
-    call.getMethod().getName() = "getInstance" and
-    call.getArgument(0).toString() = algorithm
-  )
-select call, algorithm, call.getLocation()
+class CipherGetInstanceUsage extends MethodCall {
+    CipherGetInstanceUsage() {
+      this.getTarget().getDeclaringType().hasQualifiedName("javax.crypto", "Cipher") and
+      this.getTarget().getName() = "getInstance"
+    }
+}      
+
+from CipherGetInstanceUsage mc 
+select mc, mc.getArgument(0), mc.getLocation()
