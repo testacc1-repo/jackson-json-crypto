@@ -15,7 +15,9 @@ import java
 
 class CipherGetInstanceUsage extends MethodCall {
     CipherGetInstanceUsage() {
-      this.getTarget().getDeclaringType().hasQualifiedName("javax.crypto", "Cipher") and
+      this.getTarget().getDeclaringType().hasQualifiedName("javax.crypto%") or
+      this.getTarget().getDeclaringType().hasQualifiedName("java.security%") or
+      this.getTarget().getDeclaringType().hasQualifiedName("javax.net%") and
       this.getTarget().getName() = "getInstance"
     }
 }      
