@@ -1,31 +1,43 @@
 /**
- * @name CryptographicArtificatoryUsage
- * @description Method Matched with Cryptographic Artificatory Usage  
- * @kind problem
- * @problem.severity	recommendation
- * @id java/type-crypto-method-match
- * @tags reliability
- *        correctness
- *        logic
+ * @name Use of cryptographic algorithm
+ * @description Using  cryptographic algorithms can allow an attacker to compromise security.
+ * @kind path-problem
+ * @problem.severity warning
+ * @security-severity 5.2
+ * @precision high
+ * @id java/cryptographic-algorithm
+ * @tags security
  */
 
-
-
  import java
+ import semmle.code.java.security.Encryption
  import semmle.code.java.dataflow.DataFlow
+ import semmle.code.java.security.BrokenCryptoAlgorithmQuery
  
- class CryptoMethodInstanceUsage extends MethodCall {
-     CryptoMethodInstanceUsage() {
-       exists(Method m | this.getMethod() = m and ((
-       m.getDeclaringType().getQualifiedName().matches("javax.crypto%") or
-       m.getDeclaringType().getQualifiedName().matches("java.security%") or
-       m.getDeclaringType().getQualifiedName().matches("javax.net%") )and
-       m.getName() = "getInstance")
-       )
-     }
- }      
- 
- 
- from CryptoMethodInstanceUsage mc
- select mc, "Algorithm " + mc.getArgument(0) + " " +  mc.getLocation().getFile().getRelativePath().toString() +
- " Line: " +  mc.getLocation().getStartLine().toString()
+ abstract class CryptoAlgorithm extends Expr {
+    /** Gets the string representation of this insecure cryptographic algorithm. */
+    abstract string getStringValue();
+  }
+  
+  private class ShortStringLiteral extends StringLiteral {
+    ShortStringLiteral() { this.getValue().length() < 100 }
+  }
+
+  class CryptoAlgoLiteral extends CryptoAlgorithm, ShortStringLiteral{
+    
+    CryptoAlgoLiteral()
+    {
+        exists(string s | s = this.getValue() | s.length()>1)
+    }
+    override string getStringValue() { result = this.getValue() }
+  }
+
+ from
+   Dataflow::Node source, Dataflow::Node sink, CryptoAlgoSpec spec,
+   CryptoAlgoLiteral algo
+ where
+   sink.getNode().asExpr() = spec.getAlgoSpec() and
+   source.getNode().asExpr() = algo and
+   DataFlow::localFlow(source, sink)
+select spec, source, sink, "Cryptographic algorithm $@ is  used.", algo,
+algo.getValue()
