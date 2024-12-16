@@ -30,7 +30,7 @@ string getArgInfo(CipherGetInstanceUsage c) {
     then result = "Argument: " + c.getArgument(0).toString()
     else if (exists(VariableAccess var | var = c.getArgument(0)))
     then result = "Argument " + v.getInitializer().toString()
-    else then result = "Argument: Complex or Unresolved Expression"
+    else result = "Argument: Complex or Unresolved Expression"
     
 }
 
