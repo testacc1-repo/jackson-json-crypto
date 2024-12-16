@@ -15,11 +15,11 @@ import java
 
 class CryptoMethodInstanceUsage extends MethodCall {
     CipherGetInstanceUsage() {
-      exists(Method m | this.getMethod() = m and (
+      exists(Method m | this.getMethod() = m and ((
       m.getDeclaringType().getQualifiedName().matches("javax.crypto%") or
       m.getDeclaringType().getQualifiedName().matches("java.security%") or
-      m.getDeclaringType().getQualifiedName().matches("javax.net%") and
-      m.getName() = "getInstance"
+      m.getDeclaringType().getQualifiedName().matches("javax.net%") )and
+      m.getName() = "getInstance")
       ))
     }
 }      
@@ -36,6 +36,6 @@ string getArgInfo(CryptoMethodInstanceUsage c) {
 }
 
 
-from CryptomethodInstanceUsage mc 
+from CryptoMethodInstanceUsage mc 
 select mc, "Algorithm " + getArgInfo(mc) + " " +  mc.getLocation().getFile().getRelativePath().toString() +
 " Line: " +  mc.getLocation().getStartLine().toString()
