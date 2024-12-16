@@ -24,7 +24,7 @@ class CipherGetInstanceUsage extends MethodCall {
     }
 }   
 
-String getArgInfo(CryptoMethodCall c) { 
+String getArgInfo(CipherGetInstanceUsage c) { 
     // Check if the argument is a string literal
     if (exists(StringLiteral arg | arg = c.getArgument(0))) {
         // If it's a string literal, return the value
