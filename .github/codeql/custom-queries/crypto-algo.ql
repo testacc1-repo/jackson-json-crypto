@@ -33,11 +33,11 @@
   }
 
  from
-   Dataflow::Node source, Dataflow::Node sink, CryptoAlgoSpec spec,
+   DataFlow::Node source, DataFlow::Node sink, CryptoAlgoSpec spec,
    CryptoAlgoLiteral algo
  where
    sink.getNode().asExpr() = spec.getAlgoSpec() and
    source.getNode().asExpr() = algo and
    DataFlow::localFlow(source, sink)
 select spec, source, sink, "Cryptographic algorithm $@ is  used.", algo,
-algo.getValue()
+algo.getStringValue()
