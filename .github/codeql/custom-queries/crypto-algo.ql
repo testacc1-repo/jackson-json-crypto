@@ -14,7 +14,7 @@
 import java
 
 class CryptoMethodInstanceUsage extends MethodCall {
-    CipherGetInstanceUsage() {
+    CryptoMethodInstanceUsage() {
       exists(Method m | this.getMethod() = m and ((
       m.getDeclaringType().getQualifiedName().matches("javax.crypto%") or
       m.getDeclaringType().getQualifiedName().matches("java.security%") or
