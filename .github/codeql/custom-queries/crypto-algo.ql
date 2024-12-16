@@ -27,7 +27,7 @@
  
  
  from CryptoMethodInstanceUsage mc, Parameter p
- where  DataFlow::localFlow(DataFlow::parameterNode(p), DataFlow::exprNode(call.getArgument(0)))
+ where  DataFlow::localFlow(DataFlow::parameterNode(p), DataFlow::exprNode(mc.getArgument(0)))
 
  select mc, "Algorithm " + p + " " +  mc.getLocation().getFile().getRelativePath().toString() +
  " Line: " +  mc.getLocation().getStartLine().toString()
