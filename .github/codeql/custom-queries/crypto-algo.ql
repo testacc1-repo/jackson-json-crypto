@@ -26,15 +26,12 @@ class CipherGetInstanceUsage extends MethodCall {
 
 String getArgInfo(CipherGetInstanceUsage c) { 
     // Check if the argument is a string literal
-    if (exists(StringLiteral arg | arg = c.getArgument(0))) {
-        // If it's a string literal, return the value
+    if (exists(StringLiteral arg | arg = c.getArgument(0)))
     then " | Argument: " + c.getArgument(0).toString();
-    } else if (exists(Variable var | var = c.getArgument(0))) {
-            then " | Argument " + v.getInitializer().toString();
-    } else {
-        // For other cases, return a generic response
-        then " | Argument: Complex or Unresolved Expression";
-    }
+    else if (exists(Variable var | var = c.getArgument(0)))
+    then " | Argument " + v.getInitializer().toString();
+    else then " | Argument: Complex or Unresolved Expression";
+    
 }
 
 
