@@ -27,10 +27,10 @@ class CipherGetInstanceUsage extends MethodCall {
 String getArgInfo(CipherGetInstanceUsage c) { 
     // Check if the argument is a string literal
     if (exists(StringLiteral arg | arg = c.getArgument(0)))
-    then "Argument: " + c.getArgument(0).toString()
+    then res = "Argument: " + c.getArgument(0).toString()
     else if (exists(VariableAccess var | var = c.getArgument(0)))
-    then "Argument " + v.getInitializer().toString()
-    else then "Argument: Complex or Unresolved Expression"
+    then res = "Argument " + v.getInitializer().toString()
+    else then res = "Argument: Complex or Unresolved Expression"
     
 }
 
