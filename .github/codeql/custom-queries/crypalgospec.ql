@@ -1,7 +1,7 @@
 /**
  * @name Use of cryptographic algorithm
  * @description Using  cryptographic algorithms can allow an attacker to compromise security.
- * @kind path-problem
+ * @kind problem
  * @problem.severity warning
  * @security-severity 5.2
  * @precision high
