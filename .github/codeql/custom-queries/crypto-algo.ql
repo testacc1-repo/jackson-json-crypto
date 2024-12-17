@@ -1,5 +1,5 @@
 /**
- * @name Use of cipher cryptographic algorithm
+ * @name Use of cryptographic algorithm
  * @description Using  cryptographic algorithms can allow an attacker to compromise security.
  * @kind path-problem
  * @problem.severity warning
@@ -12,8 +12,6 @@
  import java
  import semmle.code.java.security.Encryption
  import semmle.code.java.dataflow.DataFlow
- import semmle.code.java.security.BrokenCryptoAlgorithmQuery
- import InsecureCryptoFlow::PathGraph
 
  
  abstract class CryptoAlgorithm extends Expr {
@@ -22,7 +20,7 @@
   }
   
   private class ShortStringLiteral extends StringLiteral {
-    ShortStringLiteral() { this.getValue().length() < 100 }
+    ShortStringLiteral() { this.getValue().length() < 10 }
   }
 
   class CryptoAlgoLiteral extends CryptoAlgorithm, ShortStringLiteral{
@@ -35,13 +33,12 @@
   }
 
  from
- DataFlow::Node source, DataFlow::Node sink, CryptoAlgoSpec spec,
-    CryptoAlgoLiteral algo
- where
-    sink.asExpr() = spec.getAlgoSpec() and
-    source.asExpr() = algo and
-    DataFlow::localFlow(source, sink)
-
+    DataFlow::Node source, DataFlow::Node sink,
+    CryptoAlgoLiteral algo 
+where
+  source.asExpr() instanceof MethodCall and
+  sink.asExpr() instanceof Argument and
+  sink.asExpr() = algo and 
+  DataFlow::localFlow(sink, source)
 select
-    spec, source, sink, "Cryptographic algorithm $@ is  used.", algo,
-    algo.getStringValue()
+    source,  sink, algo.getStringValue()
