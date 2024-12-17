@@ -43,5 +43,5 @@
     DataFlow::localFlow(source, sink)
 
 select
-    spec, source, sink, "Cryptographic algorithm $@ is  used.", algo,
+    spec, "Cryptographic algorithm $@ is  used.", algo,
     algo.getStringValue()
