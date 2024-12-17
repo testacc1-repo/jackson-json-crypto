@@ -1,5 +1,5 @@
 /**
- * @name Use of cryptographic algorithm
+ * @name Use of cipher cryptographic algorithm
  * @description Using  cryptographic algorithms can allow an attacker to compromise security.
  * @kind path-problem
  * @problem.severity warning
