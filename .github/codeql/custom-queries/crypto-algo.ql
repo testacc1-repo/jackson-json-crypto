@@ -35,11 +35,11 @@
   }
 
  from
-    InsecureCryptoFlow::PathNode source, InsecureCryptoFlow::PathNode sink, CryptoAlgoSpec spec,
+ DataFlow::Node source, DataFlow::Node sink, CryptoAlgoSpec spec,
     CryptoAlgoLiteral algo
  where
-    sink.getNode().asExpr() = spec.getAlgoSpec() and
-    source.getNode().asExpr() = algo and
+    sink.asExpr() = spec.getAlgoSpec() and
+    source.asExpr() = algo and
     DataFlow::localFlow(source, sink)
 
 select
