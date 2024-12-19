@@ -15,7 +15,7 @@
  import semmle.code.java.security.Encryption
  import semmle.code.java.dataflow.DataFlow
  import CryptoUtils
- 
+ import MyCryptoFlow::PathGraph
 
  from DataFlow::Node source, DataFlow::Node sink, CryptoAlgoSpecMethod spec, CryptoAlgoLiteral algo
  where 
