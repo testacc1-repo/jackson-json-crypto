@@ -24,5 +24,4 @@
   sink.asExpr() = spec.getAlgoSpec() and
   source.asExpr() = algo and
   MyCryptoFlow::flow(source, sink)
-select spec, spec.getAlgoSpec() + " " + spec.getLocation().getFile().getRelativePath().toString() +
-" Line: " +  spec.getLocation().getStartLine().toString(), algo, algo.getStringValue() + " " + algo.getLocation().getFile().getRelativePath().toString() + " Line: " +  algo.getLocation().getStartLine().toString()
+select   spec,  source, sink, "Cryptographic Algorithm is $@ is used", algo, algo.getValue()
