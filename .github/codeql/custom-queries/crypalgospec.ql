@@ -13,9 +13,7 @@
 
  import java
  import semmle.code.java.security.Encryption
- import semmle.code.java.security.BrokenCryptoAlgorithmQuery
  import semmle.code.java.dataflow.DataFlow
- import InsecureCryptoFlow::PathGraph
  import CryptoUtils
  
 
@@ -24,4 +22,4 @@
   sink.asExpr() = spec.getAlgoSpec() and
   source.asExpr() = algo and
   MyCryptoFlow::flow(source, sink)
-select   spec,  source, sink, "Cryptographic Algorithm is $@ is used", algo, algo.getValue()
+select spec, source, sink, "Cryptographic Algorithm is $@ is used.", algo, algo.getValue()
