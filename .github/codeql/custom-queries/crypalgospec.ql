@@ -12,7 +12,6 @@
  */
 
  import java
- import semmle.code.java.security.Encryption
  import semmle.code.java.dataflow.DataFlow
  import MyCryptoFlow::PathGraph
  import CryptoUtils
