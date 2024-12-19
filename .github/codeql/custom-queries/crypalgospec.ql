@@ -1,47 +1,28 @@
 /**
- * @name Use of cryptographic algorithm
- * @description Using  cryptographic algorithms can allow an attacker to compromise security.
- * @kind problem
+ * @name Use of a broken or risky cryptographic algorithm
+ * @description Using broken or weak cryptographic algorithms can allow an attacker to compromise security.
+ * @kind path-problem
  * @problem.severity warning
- * @security-severity 5.2
+ * @security-severity 7.5
  * @precision high
- * @id java/cryptographic-algorithm
+ * @id java/weak-cryptographic-algorithm
  * @tags security
+ *       external/cwe/cwe-327
+ *       external/cwe/cwe-328
  */
 
  import java
  import semmle.code.java.security.Encryption
- import semmle.code.java.dataflow.DataFlow
  import semmle.code.java.security.BrokenCryptoAlgorithmQuery
+ import semmle.code.java.dataflow.DataFlow
  import InsecureCryptoFlow::PathGraph
-
+ import CryptoUtils
  
- abstract class CryptoAlgorithm extends Expr {
-    /** Gets the string representation of this insecure cryptographic algorithm. */
-    abstract string getStringValue();
-  }
-  
-  private class ShortStringLiteral extends StringLiteral {
-    ShortStringLiteral() { this.getValue().length() < 100 }
-  }
 
-  class CryptoAlgoLiteral extends CryptoAlgorithm, ShortStringLiteral{
-    
-    CryptoAlgoLiteral()
-    {
-        exists(string s | s = this.getValue() | s.length()>1)
-    }
-    override string getStringValue() { result = this.getValue() }
-  }
-
- from
- DataFlow::Node source, DataFlow::Node sink, CryptoAlgoSpec spec,
-    CryptoAlgoLiteral algo
- where
-    sink.asExpr() = spec.getAlgoSpec() and
-    source.asExpr() = algo and
-    DataFlow::localFlow(source, sink)
-
-select
-    spec, "Cryptographic algorithm $@ is  used.", algo,
-    algo.getStringValue()
+ from DataFlow::Node source, DataFlow::Node sink, CryptoAlgoSpecMethod spec, CryptoAlgoLiteral algo
+ where 
+  sink.asExpr() = spec.getAlgoSpec() and
+  source.asExpr() = algo and
+  MyCryptoFlow::flow(source, sink)
+select spec, spec.getAlgoSpec() + " " + spec.getLocation().getFile().getRelativePath().toString() +
+" Line: " +  spec.getLocation().getStartLine().toString(), algo, algo.getStringValue() + " " + algo.getLocation().getFile().getRelativePath().toString() + " Line: " +  algo.getLocation().getStartLine().toString()
