@@ -1,5 +1,4 @@
 import java
-import semmle.code.java.security.Encryption
 private import semmle.code.java.dataflow.TaintTracking
 private import semmle.code.java.security.Sanitizers
 private import semmle.code.configfiles.ConfigFiles
