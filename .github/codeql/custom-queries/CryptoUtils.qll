@@ -18,6 +18,8 @@ class CryptoAlgoLiteral extends CryptoAlgorithm, ShortStringLiteral {
   override string getStringValue() { result = this.getValue() }
 }
 
+
+
 class CryptoAlgoSpecMethod extends CryptoAlgoSpec {
   CryptoAlgoSpecMethod() {
     exists(Method m | m.getAReference() = this |
