@@ -14,10 +14,11 @@
  import java
  import semmle.code.java.security.Encryption
  import semmle.code.java.dataflow.DataFlow
- import CryptoUtils
  import MyCryptoFlow::PathGraph
+ import CryptoUtils
+ import MyCryptoFlow
 
- from MyCryptoFlow::Node source, MyCryptoFlow:Node sink, CryptoAlgoSpecMethod spec, CryptoAlgoLiteral algo
+ from DataFlow::Node source, DataFlow::Node sink, CryptoAlgoSpecMethod spec, CryptoAlgoLiteral algo
  where 
   sink.asExpr() = spec.getAlgoSpec() and
   source.asExpr() = algo and
