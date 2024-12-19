@@ -17,7 +17,7 @@
  import CryptoUtils
  import MyCryptoFlow::PathGraph
 
- from DataFlow::Node source, DataFlow::Node sink, CryptoAlgoSpecMethod spec, CryptoAlgoLiteral algo
+ from MyCryptoFlow::Node source, MyCryptoFlow:Node sink, CryptoAlgoSpecMethod spec, CryptoAlgoLiteral algo
  where 
   sink.asExpr() = spec.getAlgoSpec() and
   source.asExpr() = algo and
