@@ -27,10 +27,6 @@ class CryptoAlgoSpecMethod extends CryptoAlgoSpec {
     )
     or
     exists(Method m | m.getAReference() = this |
-      m.hasQualifiedName("javax.crypto", "KeyAgreement", "getInstance")
-    )
-    or
-    exists(Method m | m.getAReference() = this |
       m.hasQualifiedName("java.security", "MessageDigest", "getInstance")
     )
     or
