@@ -120,32 +120,6 @@ string getInsecureAlgoRegex() {
   result = algorithmRegex(insecureAlgoString(max(int i | exists(rankedInsecureAlgo(i)))))
 }
 
-/**
- * Gets the name of an Algo that is known to be secure.
- */
-string getASecureAlgoName() {
-  result =
-    [
-      "RSA", "SHA-?(256|384|512)", "CCM", "GCM", "AES(?![^a-zA-Z](ECB|CBC/PKCS[57]Padding))",
-      "Blowfish", "ECIES", "SHA3-(256|384|512)"
-    ]
-}
-
-private string rankedSecureAlgo(int i) { result = rank[i](getASecureAlgoName()) }
-
-private string secureAlgoString(int i) {
-  i = 1 and result = rankedSecureAlgo(i)
-  or
-  result = rankedSecureAlgo(i) + "|" + secureAlgoString(i - 1)
-}
-
-/**
- * Gets a regular expression for matching strings that look like they
- * contain an Algo that is known to be secure.
- */
-string getSecureAlgoRegexp() {
-  result = algorithmRegex(secureAlgoString(max(int i | exists(rankedSecureAlgo(i)))))
-}
 
 class InsecureAlgoLiteral extends CryptoAlgo, ShortStringLiteral {
   InsecureAlgoLiteral() {
