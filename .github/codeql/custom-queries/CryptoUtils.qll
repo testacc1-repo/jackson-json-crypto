@@ -121,7 +121,7 @@ string getInsecureAlgoRegex() {
 }
 
 
-class InsecureAlgoLiteral extends CryptoAlgo, ShortStringLiteral {
+class InsecureAlgoLiteral extends CryptoAlgorithm, ShortStringLiteral {
   InsecureAlgoLiteral() {
     exists(string s | s = this.getValue() |
       // Algo identifiers should be at least two characters.
