@@ -89,7 +89,7 @@ string getAnInsecureAlgoName() {
       // Encryption mode ECB like AES/ECB/NoPadding is vulnerable to replay and other attacks
       "ECB", "ECIES", "DH", "ECDH",
       // CBC mode of operation with PKCS#5 or PKCS#7 padding is vulnerable to padding oracle attacks
-      "AES/CBC/PKCS[57]Padding"
+      "AES"
     ]
 }
 
