@@ -39,8 +39,7 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
-        languages: ${{ matrix.language }}
-        queries: ./.github/codeql/custom-queries
+          config-file: ./.github/codeql/codeql-config.yml
 
     # Manual build step using Gradle
     - name: Build with Gradle
