@@ -9,7 +9,7 @@ abstract class CryptoAlgorithm extends Expr {
 }
 
 private class ShortStringLiteral extends StringLiteral {
-  ShortStringLiteral() { this.getValue().length() < 20 }
+  ShortStringLiteral() { this.getValue().length() < 50 }
 }
 
 class CryptoAlgoLiteral extends CryptoAlgorithm, ShortStringLiteral {
