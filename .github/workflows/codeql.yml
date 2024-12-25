@@ -39,7 +39,7 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
-        packs: './.github/codeql '
+        queries: './.github/codeql'
 
     # Manual build step using Gradle
     - name: Build with Gradle
