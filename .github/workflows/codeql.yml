@@ -41,7 +41,7 @@ jobs:
       with:
         languages: ${{ matrix.language }}
         queries: './.github/codeql/custom-queries'
-        packs: ''
+        qlpack: ''
 
     # Manual build step using Gradle
     - name: Build with Gradle
