@@ -1,5 +1,4 @@
 name: my-custom-queries
 version: 0.0.1
-libraryPathDependencies: codeql-java
 dependencies:
   - codeql/java-queries # Include the standard Java queries
