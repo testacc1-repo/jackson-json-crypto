@@ -40,7 +40,7 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-        queries: './.github/codeql'
+        queries: ./.github/codeql/custom-queries
 
     # Manual build step using Gradle
     - name: Build with Gradle
