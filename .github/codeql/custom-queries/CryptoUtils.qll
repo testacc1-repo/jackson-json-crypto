@@ -83,13 +83,8 @@ private string algorithmRegex(string algorithmString) {
 string getAnInsecureAlgoName() {
   result =
     [
-      "DES", "RC2", "RC4", "RC5",
-      // ARCFOUR is a variant of RC4
-      "ARCFOUR",
-      // Encryption mode ECB like AES/ECB/NoPadding is vulnerable to replay and other attacks
-      "ECB", "ECIES", "DH", "ECDH",
-      // CBC mode of operation with PKCS#5 or PKCS#7 padding is vulnerable to padding oracle attacks
-      "AES"
+      "ECIES", "DH", "AES", "DES", "DESede", "Blowfish", "Twofish", "RC4", "RC5", "Serpent", "Camellia", "CAST5", "Skipjack",
+      "RSA", "EC", "DH", "ElGamal", "MD5", "SHA-1", "SHA-256", "SHA-512", "SHA256withRSA", "SHA256withDSA", "SHA256withECDSA"
     ]
 }
 
