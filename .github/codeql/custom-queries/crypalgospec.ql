@@ -14,7 +14,7 @@
  import semmle.code.java.security.Encryption
  import CryptoUtils
 
- from MyCryptoFlow::PathNode source, MyCryptoFlow::PathNode sink, CryptoAlgoSpecMethod spec, CryptoAlgoLiteral algo
+ from MyCryptoFlow::PathNode source, MyCryptoFlow::PathNode sink, CryptoAlgoSpecMethod spec, SecureAlgoLiteral algo
  where 
   source.getNode().asExpr() = algo and
   sink.getNode().asExpr() = spec.getAlgoSpec() and
