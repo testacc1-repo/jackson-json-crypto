@@ -128,3 +128,46 @@ class InsecureAlgoLiteral extends CryptoAlgorithm, ShortStringLiteral {
   override string getStringValue() { result = this.getValue() }
 }
 
+
+
+
+
+
+string getASecureAlgorithmName() {
+  result =
+    [
+      "AES", "SHA-?(256|384|512)",  "AES(?![^a-zA-Z](ECB|CBC/PKCS[57]Padding))", "SHA3-(256|384|512)", "ML-KEM (formerly CRYSTALS-Kyber)",
+    "NTRU", "NTRU Prime", "SABER", "FrodoKEM", "ML-DSA", "SLH-DSA", "FN-DSA", "Picnic"
+    ]
+}
+
+private string rankedSecureAlgorithm(int i) { result = rank[i](getASecureAlgorithmName()) }
+
+private string secureAlgorithmString(int i) {
+  i = 1 and result = rankedSecureAlgorithm(i)
+  or
+  result = rankedSecureAlgorithm(i) + "|" + secureAlgorithmString(i - 1)
+}
+
+/**
+ * Gets a regular expression for matching strings that look like they
+ * contain an algorithm that is known to be secure.
+ */
+string getSecureAlgorithmRegex() {
+  result = algorithmRegex(secureAlgorithmString(max(int i | exists(rankedSecureAlgorithm(i)))))
+}
+
+
+class SecureAlgoLiteral extends CryptoAlgo, ShortStringLiteral {
+  SecureAlgoLiteral() {
+    exists(string s | s = this.getValue() |
+      // Algo identifiers should be at least two characters.
+      s.length() > 1 and
+      s.regexpMatch(getSecureAlgoRegex())
+    )
+  }
+
+  override string getStringValue() { result = this.getValue() }
+}
+
+
