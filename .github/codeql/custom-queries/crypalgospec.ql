@@ -2,10 +2,9 @@
  * @name Use of a broken or risky cryptographic algorithm
  * @description Using broken or weak cryptographic algorithms can allow an attacker to compromise security.
  * @kind path-problem
- * @problem.severity warning
+ * @problem.severity info
  * @id java/cryptographic-algorithm
- * @tags security
- *       Crytpographic Algorithms
+ * @tags PQC-Compliant
  */
 
  import java
