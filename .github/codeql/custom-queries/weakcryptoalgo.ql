@@ -6,8 +6,7 @@
  * @security-severity 7.5
  * @precision high
  * @id java/weak-cryptographic-algorithm
- * @tags security
- *       "PQC Non-Compliant"
+ * @tags PQC-Non-Compliant
  */
 
  import java
