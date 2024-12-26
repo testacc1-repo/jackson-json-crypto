@@ -7,7 +7,7 @@
  * @precision high
  * @id java/weak-cryptographic-algorithm
  * @tags security
- *       PQC Non-Compliant
+ *       "PQC Non-Compliant"
  */
 
  import java
