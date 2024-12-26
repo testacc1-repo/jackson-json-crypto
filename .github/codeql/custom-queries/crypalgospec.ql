@@ -1,5 +1,5 @@
 /**
- * @name Use of a broken or risky cryptographic algorithm
+ * @name Use of cryptographic algorithm
  * @description Using broken or weak cryptographic algorithms can allow an attacker to compromise security.
  * @kind path-problem
  * @problem.severity info
