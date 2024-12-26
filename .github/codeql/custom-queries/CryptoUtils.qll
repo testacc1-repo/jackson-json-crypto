@@ -83,7 +83,7 @@ private string algorithmRegex(string algorithmString) {
 string getAnInsecureAlgoName() {
   result =
     [
-      "ECIES", "DH", "AES", "DES", "DESede", "Blowfish", "Twofish", "RC4", "RC5", "Serpent", "Camellia", "CAST5", "Skipjack",
+      "ECIES", "DH", "DES", "DESede", "Blowfish", "Twofish", "RC4", "RC5", "Serpent", "Camellia", "CAST5", "Skipjack",
       "RSA", "EC", "DH", "ElGamal", "MD5", "SHA-1", "SHA-256", "SHA-512", "SHA256withRSA", "SHA256withDSA", "SHA256withECDSA"
     ]
 }
