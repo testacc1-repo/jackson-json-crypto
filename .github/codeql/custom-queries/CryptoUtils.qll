@@ -32,7 +32,35 @@ class CryptoAlgoSpecMethod extends CryptoAlgoSpec {
     or
     exists(Method m | m.getAReference() = this |
       m.hasQualifiedName("javax.net.ssl", "SSLContext", "getInstance")
+    ) or
+     exists(Method m | m.getAReference() = this |
+      m.hasQualifiedName("org.bouncycastle.crypto", "Cipher", "getInstance")
     )
+    or
+    exists(Method m | m.getAReference() = this |
+      m.hasQualifiedName("org.bouncycastle.crypto", "KeyAgreement", "getInstance")
+    )
+    or
+    exists(Method m | m.getAReference() = this |
+      m.hasQualifiedName("org.bouncycastle.crypto", "MessageDigest", "getInstance")
+    )
+    or
+    exists(Method m | m.getAReference() = this |
+      m.hasQualifiedName("org.bouncycastle.crypto", "Signature", "getInstance")
+    )
+    or
+    exists(Method m | m.getAReference() = this |
+      m.hasQualifiedName("org.bouncycastle.crypto", "Mac", "getInstance")
+    )
+    or
+    exists(Method m | m.getAReference() = this |
+      m.hasQualifiedName("org.bouncycastle.jce.provider", "Cipher", "getInstance")
+    )
+    or
+    exists(Method m | m.getAReference() = this |
+      m.hasQualifiedName("org.bouncycastle.jce.provider", "MessageDigest", "getInstance")
+    )
+
   }
 
   override Expr getAlgoSpec() { result = this.(MethodCall).getArgument(0) }
