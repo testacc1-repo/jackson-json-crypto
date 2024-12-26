@@ -161,7 +161,7 @@ class InsecureAlgoLiteral extends CryptoAlgorithm, ShortStringLiteral {
 
 
 
-string getASecureAlgorithmName() {
+string getASecureAlgoName() {
   result =
     [
       "AES", "SHA-?(256|384|512)",  "AES(?![^a-zA-Z](ECB|CBC/PKCS[57]Padding))", "SHA3-(256|384|512)", "ML-KEM (formerly CRYSTALS-Kyber)",
@@ -169,20 +169,20 @@ string getASecureAlgorithmName() {
     ]
 }
 
-private string rankedSecureAlgorithm(int i) { result = rank[i](getASecureAlgorithmName()) }
+private string rankedSecureAlgo(int i) { result = rank[i](getASecureAlgoName()) }
 
-private string secureAlgorithmString(int i) {
-  i = 1 and result = rankedSecureAlgorithm(i)
+private string secureAlgoString(int i) {
+  i = 1 and result = rankedSecureAlgo(i)
   or
-  result = rankedSecureAlgorithm(i) + "|" + secureAlgorithmString(i - 1)
+  result = rankedSecureAlgo(i) + "|" + secureAlgoString(i - 1)
 }
 
 /**
  * Gets a regular expression for matching strings that look like they
  * contain an algorithm that is known to be secure.
  */
-string getSecureAlgorithmRegex() {
-  result = algorithmRegex(secureAlgorithmString(max(int i | exists(rankedSecureAlgorithm(i)))))
+string getSecureAlgoRegex() {
+  result = algorithmRegex(secureAlgoString(max(int i | exists(rankedSecureAlgo(i)))))
 }
 
 
