@@ -167,7 +167,7 @@ string getASecureAlgoName() {
       "AES", "SHA-?(256|384|512)",  "AES(?![^a-zA-Z](ECB|CBC/PKCS[57]Padding))", "SHA3-(256|384|512)", "ML-KEM", "Falcon", "Kyber",
     "FrodoKEM", "SABER", "McEliece", "Dilithium", "SPHINCS+", "XMSS", "XMSSMT", "NTRU", "NTRU Prime", "SABER", "FrodoKEM", "ML-DSA", "SLH-DSA", "FN-DSA", "Picnic", 
     "Chrystals-Kyber", "Chrystals-Dilithium SIG", "Falcon SIG", "Sphincs+", "BIKE KEM", "Classic McEliece KEM", "HQC KEM", "SIKE KEM", "NTRU KEM", "FRODO KEM",
-    "SABER KEM", "Rainbow", "NTRULPRime", "SNTRUPRime", "Picnic SIG", "^TLS1\\.[3-9]$", "^TLS2[\\^%]$"
+    "SABER KEM", "Rainbow", "NTRULPRime", "SNTRUPRime", "Picnic SIG", "^TLS1\\.[3-9]$", "^TLS2\\..[0-9]$"
     ]
 }
 
