@@ -46,6 +46,10 @@ class CryptoAlgoSpecMethod extends CryptoAlgoSpec {
     )
     or
     exists(Method m | m.getAReference() = this |
+      m.hasQualifiedName("java.security", "Signature", "getInstance")
+    )
+    or
+    exists(Method m | m.getAReference() = this |
       m.hasQualifiedName("org.bouncycastle.crypto", "Signature", "getInstance")
     )
     or
