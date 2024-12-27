@@ -164,8 +164,9 @@ class InsecureAlgoLiteral extends CryptoAlgorithm, ShortStringLiteral {
 string getASecureAlgoName() {
   result =
     [
-      "AES", "SHA-?(256|384|512)",  "AES(?![^a-zA-Z](ECB|CBC/PKCS[57]Padding))", "SHA3-(256|384|512)", "ML-KEM (formerly CRYSTALS-Kyber)",
-    "NTRU", "NTRU Prime", "SABER", "FrodoKEM", "ML-DSA", "SLH-DSA", "FN-DSA", "Picnic"
+      "AES", "SHA-?(256|384|512)",  "AES(?![^a-zA-Z](ECB|CBC/PKCS[57]Padding))", "SHA3-(256|384|512)", "ML-KEM",
+    "NTRU", "NTRU Prime", "SABER", "FrodoKEM", "ML-DSA", "SLH-DSA", "FN-DSA", "Picnic", "Chrystals-Kyber KEM", "Chrystals-Dilithium SIG", "Falcon SIG", "Sphincs+ SIG",
+    "BIKE KEM", "Classic McEliece KEM", "HQC KEM", "SIKE KEM", "NTRU KEM", "FRODO KEM", "SABER KEM", "Rainbow SIG", "NTRULPRime KEM", "SNTRUPRime KEM", "Picnic SIG"
     ]
 }
 
